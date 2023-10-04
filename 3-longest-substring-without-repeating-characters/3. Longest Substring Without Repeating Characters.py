@@ -9,6 +9,7 @@ class Solution:
                 cset.remove(s[l])
                 l += 1
             cset.add(s[r])
+            print(l,r)
             res = max(res, r-l+1)
 
         return res
