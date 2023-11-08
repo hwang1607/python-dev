@@ -8,35 +8,34 @@ class Solution:
         """
         Do not return anything, modify head in-place instead.
         """
-        slow = head
-        fast = head.next
-
-        while fast and fast.next:
-            slow = slow.next
+        slow = fast = head
+        
+        while fast.next and fast.next.next:
             fast = fast.next.next
+            slow = slow.next
 
-        second = slow.next #second half
-        slow.next = None
         prev = None
+        second = slow.next
+        slow.next = None
 
         while second:
-            tmp = second.next
+            temp = second.next
             second.next = prev
             prev = second
-            second = tmp
+            second = temp
 
-        first = head
-        second = prev
+        temphead = head
+        while prev:
+            temp1 = temphead.next
+            temp2 = prev.next
+            
+            temphead.next = prev
+            prev.next = temp1
 
-        while first and second:
-            tmp1 = first.next
-            tmp2 = second.next
+            temphead = temp1
+            prev = temp2
 
-            first.next = second
-            first.next.next = tmp1
-
-            first = tmp1
-            second = tmp2
             
 
-            
+
+        
