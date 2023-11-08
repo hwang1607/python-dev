@@ -5,27 +5,27 @@
 #         self.next = next
 class Solution:
     def reorderList(self, head: Optional[ListNode]) -> None:
-        """
-        Do not return anything, modify head in-place instead.
-        """
-        slow = fast = head
-        
+        #find middle
+        slow = head
+        fast = head
+
         while fast.next and fast.next.next:
             fast = fast.next.next
             slow = slow.next
 
-        prev = None
+        #need node before second half to split list
         second = slow.next
         slow.next = None
+        prev = None
 
-        while second:
+        while second: 
             temp = second.next
             second.next = prev
             prev = second
             second = temp
 
         temphead = head
-        while prev:
+        while prev: #shorter if odd
             temp1 = temphead.next
             temp2 = prev.next
             
