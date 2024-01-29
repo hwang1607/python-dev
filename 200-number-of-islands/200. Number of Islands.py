@@ -2,35 +2,32 @@ class Solution:
     def numIslands(self, grid: List[List[str]]) -> int:
         if not grid:
             return 0
+
+        rows, cols = len(grid), len(grid[0])
+        visited=set()
+        islands=0
+
+        def bfs(r,c):
+            q = deque()
+            visited.add((r,c))
+            q.append((r,c))
         
-        ROWS = len(grid)
-        COLS = len(grid[0])
+            while q:
+                row,col = q.popleft()
+                directions= [[1,0],[-1,0],[0,1],[0,-1]]
+            
+                for dr,dc in directions:
+                    r,c = row + dr, col + dc
+                    if (r) in range(rows) and (c) in range(cols) and grid[r][c] == '1' and (r ,c) not in visited:
+                    
+                        q.append((r , c ))
+                        visited.add((r, c ))
 
-        visit = set()
-        res = 0
-
-       
-        def bfs(r,c): #dfs
-            #visit.add((r,c))
-            grid[r][c] = 0
-
-            if r+1 in range(ROWS) and c in range (COLS) and grid[r+1][c] == "1" and (r+1,c) not in visit:
-                bfs(r+1,c) 
-
-            if r in range(ROWS) and c+1 in range (COLS) and grid[r][c+1] == "1" and (r,c+1) not in visit:
-                bfs(r,c+1)
-
-            if r-1 in range(ROWS) and c in range (COLS) and grid[r-1][c] == "1" and (r-1,c) not in visit:
-                bfs(r-1,c)
-
-            if r in range(ROWS) and c-1 in range (COLS) and grid[r][c-1] == "1" and (r,c-1) not in visit:
-                bfs(r,c-1)
-                
-
-        for r in range(ROWS):
-            for c in range(COLS):
-                if grid[r][c] == "1" and (r,c) not in visit:
+        for r in range(rows):
+            for c in range(cols):
+            
+                if grid[r][c] == "1" and (r,c) not in visited:
                     bfs(r,c)
-                    res += 1
-        return res
-        
+                    islands +=1 
+
+        return islands
