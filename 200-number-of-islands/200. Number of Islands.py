@@ -10,8 +10,9 @@ class Solution:
         res = 0
 
        
-        def bfs(r,c):
-            visit.add((r,c))
+        def bfs(r,c): #dfs
+            #visit.add((r,c))
+            grid[r][c] = 0
 
             if r+1 in range(ROWS) and c in range (COLS) and grid[r+1][c] == "1" and (r+1,c) not in visit:
                 bfs(r+1,c) 
