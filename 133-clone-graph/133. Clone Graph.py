@@ -8,23 +8,37 @@ class Node:
 
 class Solution:
     def cloneGraph(self, node: 'Node') -> 'Node':
+        l=[]
+        p=[]
+        def display(n):
+            if(n):
+                l.append(n.val)
+                x=[]
+                for i in n.neighbors:
+                    x.append(i.val)
+                p.append(x)
+                for i in n.neighbors:
+                    if(i.val not in l):
+                        display(i)
+
+        A=[]
+        visited=[]        
+        def clone(n):
+            if(n):
+                new=Node(n.val)
+                visited.append(new.val)
+                A.append(new)
+                for i in n.neighbors:
+                    if(i.val not in visited): 
+                       
+                        new.neighbors.append(clone(i))
+                    else:
+                        for j in A:
+                            if(j.val==i.val):
+                                new.neighbors.append(j)
+                                break
+                return new
+        return clone(node)
+        display(clone(node))
+        print(p)
         
-        if not node:
-            return
-        oldToNew = {}
-
-        
-
-        def dfs(node):
-            if node in oldToNew:
-                return oldToNew[node]
-            
-            copy = Node(node.val)
-            oldToNew[node] = copy #old node to copy
-
-            for n in node.neighbors:
-
-                copy.neighbors.append(dfs(n))
-            return copy
-        
-        return dfs(node)
