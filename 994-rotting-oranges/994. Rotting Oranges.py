@@ -18,13 +18,11 @@ class Solution:
         while rotten and fresh > 0:
             time += 1
             
-            length = len(rotten)
             for i in range(len(rotten)):
                 r,c = rotten.popleft()
 
 
                 directions = [[1,0],[-1,0],[0,1],[0,-1]]
-                print(r,c)
 
                 for dr, dc in directions:
                     row = r + dr
@@ -33,10 +31,7 @@ class Solution:
                         rotten.append((row,col))
                         fresh -= 1
                         grid[row][col] = 2
-                        print(rotten, fresh)
             
-
-        
 
         if fresh == 0:
             return time
