@@ -24,10 +24,17 @@ class Solution:
             dfs(r, 0, pac, heights[r][0])
             dfs(r, cols-1, atl, heights[r][cols-1])
 
-        for r in range(rows):
-            for c in range(cols):
-                if (r,c) in pac and (r,c) in atl:
-                    res.append([r,c])
+        # for r in range(rows):
+        #     for c in range(cols):
+        #         if (r,c) in pac and (r,c) in atl:
+        #             res.append([r,c])
+        
+        # for x in pac:
+        #     if x in atl:
+        #         res.append(x)
+        
+        res = [x for x in pac if x in atl]
+
         return res
 
                 
