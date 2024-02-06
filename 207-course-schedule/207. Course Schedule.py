@@ -13,10 +13,9 @@ class Solution:
                 return True
             
             visit.add(c)
-
+            
             for p in reqmap[c]:
-                if not dfs(p):
-                    return False
+                if not dfs(p): return False
             
             visit.remove(c)
             reqmap[c] = []
