@@ -2,7 +2,8 @@ class Solution:
     def minCostConnectPoints(self, points: List[List[int]]) -> int:
         N =len(points)
 
-        adj = {i:[] for i in range(N)}
+        #adj = {i:[] for i in range(N)}
+        adj = defaultdict(list)
         for i in range(N):
             x1, y1 = points[i]
             for j in range(i+1, N):
