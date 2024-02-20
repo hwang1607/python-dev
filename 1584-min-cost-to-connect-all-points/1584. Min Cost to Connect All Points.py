@@ -16,7 +16,7 @@ class Solution:
         visit = set()
         minheap = [[0,0]] # cost and the point index
 
-        while minheap:
+        while len(visit) < N:
             cost, i = heapq.heappop(minheap)
             if i in visit:
                 continue
