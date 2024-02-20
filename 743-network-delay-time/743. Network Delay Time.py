@@ -10,13 +10,14 @@ class Solution:
         t = 0
 
         while minheap:
-            if len(visit) == n:
+            if len(visit) == n: #stop looking if it reaches all nodes
                 return t
+
             w, v = heapq.heappop(minheap)
             if v in visit:
                 continue
             visit.add(v)
-            t = max(t, w) # max of all ?
+            t = w # max of all ?
 
             for n2, w2 in adj[v]:
                 heapq.heappush(minheap, (w + w2, n2))
