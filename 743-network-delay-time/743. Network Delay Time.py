@@ -23,5 +23,5 @@ class Solution:
                 heapq.heappush(minheap, (w + w2, n2))
             
         if n == len(visit):
-            return t
+            return w
         return -1
