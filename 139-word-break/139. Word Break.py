@@ -17,7 +17,7 @@ class Solution:
         dp = [False] * (len(s) + 1)
         dp[0] = True
 
-        for i in range(1, len(s)+1):
+        for i in range(len(s)+1):
             for w in wordDict:
                 if (i - len(w)) >= 0 and s[i - len(w): i] == w:
                     dp[i] = dp[i - len(w)]    
