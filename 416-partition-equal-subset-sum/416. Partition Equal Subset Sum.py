@@ -10,6 +10,8 @@ class Solution:
         for n in nums:
             if n > target:
                 return False
+            if n == target:
+                return True
             nextdp = dp.copy()
             for t in dp:
                 if t + n == target:
