@@ -7,14 +7,14 @@ class Solution:
         dp.add(0)
         target = sum(nums) / 2
 
-        for i in range(len(nums) - 1, -1 , -1):
-            if nums[i] > target:
+        for n in nums:
+            if n > target:
                 return False
             nextdp = dp.copy()
             for t in dp:
-                if t + nums[i] == target:
+                if t + n == target:
                     return True
-                if t + nums[i] < target:
-                    nextdp.add(t + nums[i])
+                if t + n < target:
+                    nextdp.add(t + n)
             dp = nextdp
         return True if target in dp else False
