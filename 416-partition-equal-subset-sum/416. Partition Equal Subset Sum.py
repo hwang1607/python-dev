@@ -11,7 +11,9 @@ class Solution:
 
             nextdp = dp.copy()
             for t in dp:
+                if t+n == target:
+                    return True
                 nextdp.add(t + n)
             dp = nextdp
-            
+
         return True if target in dp else False
