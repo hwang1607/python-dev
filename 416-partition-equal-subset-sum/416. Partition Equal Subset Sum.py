@@ -10,10 +10,10 @@ class Solution:
         for i in range(len(nums) - 1, -1 , -1):
             nextdp = dp.copy()
             for t in dp:
-                if t == target:
-                    return True
-                # if (t+ nums[i] == target):
+                # if t == target:
                 #     return True
+                if (t+ nums[i] == target):
+                    return True
                 nextdp.add(t + nums[i])
             dp = nextdp
         return True if target in dp else False
