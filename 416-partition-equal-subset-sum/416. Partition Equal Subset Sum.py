@@ -8,15 +8,10 @@ class Solution:
         target = sum(nums) / 2
 
         for n in nums:
-            if n > target:
-                return False
-            if n == target:
-                return True
+
             nextdp = dp.copy()
             for t in dp:
-                if t + n == target:
-                    return True
-                if t + n < target:
-                    nextdp.add(t + n)
+                nextdp.add(t + n)
             dp = nextdp
+            
         return True if target in dp else False
