@@ -5,7 +5,7 @@ class Solution:
         dp = {} #(r,c) : val
 
         def dfs(r, c, preval):
-            if r >= ROWS or c >= COLS or c < 0 or r < 0:
+            if r >= ROWS or c >= COLS or c < 0 or r < 0 or matrix[r][c] < preval:
                 return 0
             if matrix[r][c] <= preval:
                 return 0
