@@ -20,7 +20,7 @@ class Solution:
             if word1[i] == word2[j]:
                 return dfs(i+1,j+1)
             
-            res = max(len(word1), len(word2))
+            res = float("inf")
             res = min(res, 1 + dfs(i+1, j+1)) #replace
             res = min(res, 1 + dfs(i+1, j)) #delete
             res = min(res, 1 + dfs(i, j+1)) #insert
