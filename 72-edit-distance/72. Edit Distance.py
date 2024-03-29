@@ -9,7 +9,6 @@ class Solution:
             return 0
 
         def dfs(i, j):
-
             if i == len(word1):
                 return len(word2) - j
             if j == len(word2):
@@ -17,7 +16,6 @@ class Solution:
 
             if (i,j) in dp:
                 return dp[(i,j)]
-
             
             if word1[i] == word2[j]:
                 return dfs(i+1,j+1)
