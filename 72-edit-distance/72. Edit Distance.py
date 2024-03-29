@@ -5,8 +5,6 @@ class Solution:
         if not word1 or not word2:
             return max(len(word1), len(word2))
 
-
-
         def dfs(i, j):
             if i == len(word1):
                 return len(word2) - j
