@@ -8,4 +8,7 @@ class Solution:
                 if nums[i] < nums[j]:
                     dp[i] = max(dp[i], 1 + dp[j])
 
+        print(dp)
+
         return max(dp)
+        
