@@ -13,10 +13,10 @@ class DetectSquares:
     def count(self, point: List[int]) -> int:
         res = 0
         px, py = point
-        for x, y in self.pts:
+        for x, y in list(self.ptsCount):
             if (abs(py - y) != abs(px-x)) or x == px or y == py:
                 continue
-            res += self.ptsCount[(x,py)] * self.ptsCount[(px,y)]
+            res += self.ptsCount[(x,y)] * self.ptsCount[(x,py)] * self.ptsCount[(px,y)]
         return res
 
 
