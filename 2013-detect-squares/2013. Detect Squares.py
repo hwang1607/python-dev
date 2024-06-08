@@ -2,12 +2,10 @@ class DetectSquares:
 
     def __init__(self):
         self.ptsCount = defaultdict(int)
-        self.pts = []
         
 
     def add(self, point: List[int]) -> None:
         self.ptsCount[tuple(point)] += 1
-        self.pts.append(point)
         
 
     def count(self, point: List[int]) -> int:
