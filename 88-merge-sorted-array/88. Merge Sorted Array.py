@@ -3,13 +3,11 @@ class Solution:
         """
         Do not return anything, modify nums1 in-place instead.
         """
-        if n == 0:
-            return
+
         total = m+n-1
         m -= 1
         n -= 1
-        print(n)
-       # p = m + n -1 # last index of nums 1
+
 
         for i in range(total, -1, -1):
             if n < 0:
