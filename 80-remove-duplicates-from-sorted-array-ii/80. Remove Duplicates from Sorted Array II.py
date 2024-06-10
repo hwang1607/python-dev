@@ -9,7 +9,6 @@ class Solution:
             if not (nums[i] == nums[p1]):
                 nums[idx] = nums[i]
                 p1 += 1
-                p2 += 1
                 idx += 1
 
         
