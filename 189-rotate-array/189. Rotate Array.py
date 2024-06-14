@@ -8,13 +8,8 @@ class Solution:
         for i in range(len(nums)-1,-1,-1):
             cur =  i-k
 
-            # if cur < 0:
-            #     cur = abs(cur)
-
             if cur < 0:
                 cur = cur % len(temp)
-            print(cur)
-            #print(temp[cur])
             
             nums[i] = temp[cur]
         
