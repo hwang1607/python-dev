@@ -1,20 +1,14 @@
 class Logger:
 
     def __init__(self):
-        # key=message, val=last printed timestamp
-        self.last_print = {}
+        self.hash ={}
         
-
     def shouldPrintMessage(self, timestamp: int, message: str) -> bool:
-        if message not in self.last_print:
-            self.last_print[message] = timestamp
+        if message not in self.hash or timestamp>= self.hash[message]:
+            self.hash[message]=timestamp+10
             return True
-        # the message has occured before
-        if timestamp < self.last_print[message] + 10: # within supressing time frame
-            return False
-        else:
-            self.last_print[message] = timestamp
-            return True
+        else: return False
+        
 
 
 # Your Logger object will be instantiated and called as such:
