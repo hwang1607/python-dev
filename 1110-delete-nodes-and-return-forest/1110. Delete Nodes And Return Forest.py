@@ -19,12 +19,9 @@ class Solution:
             root.right = helper(root.right)
 
             if root.val in to_delete:
-                print("d")
                 if root.left:
-                    print("d")
 
                     res.append(root.left)
-                    print(res)
                 if root.right:
                     res.append(root.right)
                 return None
