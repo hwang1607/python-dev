@@ -9,5 +9,6 @@ class Solution:
                 if i + j < len(nums) and memo[i+j] != float("inf"):
                     memo[i] = min(memo[i], memo[i+j] + 1)
 
+        print(memo)
         return memo[0]
                 
