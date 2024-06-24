@@ -1,15 +1,13 @@
 class Solution:
     def canJump(self, nums: List[int]) -> bool:
-        arr = [False] * len(nums)
+        memo = [False] * len(nums)
+        memo[len(nums) - 1] = True
 
-        arr[-1] = True
 
-        for i in range(len(nums) - 2, - 1, -1):
+        for i in range(len(nums) -2, -1, -1):
             for j in range(nums[i] + 1):
-                if i+j >= len(nums):
+                if i + j < len(nums) and memo[i+j]:
+                    memo[i] = True
                     break
-                if arr[i+j] == True:
-                    arr[i] = True
-                    break
-        return arr[0]
-        
+
+        return memo[0]
