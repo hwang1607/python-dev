@@ -4,9 +4,10 @@ class Solution:
         res = 0
 
         for i,n in enumerate(citations):
+            if res == len(citations):
+                return res
             if n >= i+1:
                 res = max(res, i+1)
-        print(citations)
         return res
 
 
