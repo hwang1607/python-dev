@@ -4,17 +4,22 @@ class Solution:
         right = [1] * len(nums)
         res = [1] * len(nums)
 
+        templeft = 1
         for i in range(1, len(nums)):
-            left[i] = nums[i-1] * left[i-1]
-            right[-i-1] = nums[-i] * right[-i]
+            templeft = nums[i-1] * templeft
+            res[i] = templeft
+        print(res)
+
+        tempright = 1
+        for i in range(len(nums) - 2, -1, -1):
+            tempright = nums[i+1] * tempright
+            res[i] *= tempright
 
 
+        # for i in range(len(nums)):
+        #     res[i] = left[i] * right[i]
 
-
-        for i in range(len(nums)):
-            res[i] = left[i] * right[i]
-
-        #print(left, right)
+        print(left, right)
         return res
             
         
