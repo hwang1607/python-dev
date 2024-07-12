@@ -1,6 +1,5 @@
 class Solution:
     def coinChange(self, coins: List[int], amount: int) -> int:
-        fewest = float('inf')
         cache = {} #curr number: remaining to get to amount
 
         def dfs(curr):
