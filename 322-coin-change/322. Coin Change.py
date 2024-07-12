@@ -1,32 +1,15 @@
 class Solution:
     def coinChange(self, coins: List[int], amount: int) -> int:
-        fewest = float('inf')
-        cache = {}
+        dp = [float("inf")] * (amount + 1)
+        dp[0] = 0
 
-        def dfs(curr):
-           # nonlocal fewest
-            if curr > amount:
-                return float('inf')
-
-            if curr == amount:
-                return 0
-            
-            if curr in cache:
-                return cache[curr]
-            
-
-            fewest = float('inf')
-
+        for a in range(1, amount + 1):
             for c in coins:
-                func = dfs(curr + c) + 1
-                fewest = min(fewest, func)
-            cache[curr] = fewest
-            return cache[curr]
-                    
-        res = dfs(0)
-
-
-        if res == float('inf'):
+                if a-c >= 0:
+                    dp[a] = min(dp[a], 1 + dp[a - c])
+        
+        if dp[amount] == float("inf"):
             return -1
-        return res
+        
+        return dp[amount]
         
