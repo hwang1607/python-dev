@@ -19,12 +19,12 @@ class Solution:
 
         for i in range(1, numRows-1):
             j = i
-            print(j)
+            #print(j)
 
             while j < len(s):
-                print(j,"d")
+                #print(j,"d")
                 res += s[j]
-                print(res)
+                #print(res)
                 if j + space - minus < len(s):
                     res += s[j+space- minus]
 
