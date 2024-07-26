@@ -1,0 +1,42 @@
+class Solution(object):
+    def myAtoi(self, s):
+        output = 0;
+        sign = 0;
+        
+        INT_MAX = 2**31 - 1
+        INT_MIN = (2**31 )* -1
+
+        
+        for x in s:
+            if x == ' ' and sign != 0:
+                break
+            elif x == ' ':
+                pass
+            elif x == '-' and sign == 0:
+                sign = -1
+            elif x == '+' and sign == 0:
+                sign = 1
+            elif (x.isdigit()):
+                output *= 10;
+                output += ord(str(x)) - ord('0')
+                if sign == 0:
+                    sign = 1
+            else:
+                break
+                    
+                    
+        output *= sign;
+        
+        if output > INT_MAX:
+            output = INT_MAX
+        elif output < INT_MIN:
+            output = INT_MIN
+                        
+    
+            
+        return output
+        """
+        :type s: str
+        :rtype: int
+        """
+        
