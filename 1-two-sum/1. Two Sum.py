@@ -1,12 +1,16 @@
 class Solution:
-    def __init__(self):
-        pass
     def twoSum(self, nums: List[int], target: int) -> List[int]:
-        m = {}
 
+        seen = {} #number : index
+
+        for i,n in enumerate(nums):
+            #i index, n number
+            complement = target - n
+            if complement in seen:
+                return (i, seen[complement])
+            
+            seen[n] = i
         
-        for i in range(len(nums)):
-            if target - nums[i] in m:
-                return i,m[target - nums[i]]
-            else:
-                m[nums[i]] = i                
+
+            
+        
