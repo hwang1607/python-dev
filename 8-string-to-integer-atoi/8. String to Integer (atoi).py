@@ -20,17 +20,18 @@ class Solution:
         
 
         while i < len(s) and s[i].isdigit():
-            res = res * 10 + int(s[i])
+            digit = int(s[i])
+
+            #if the res is greater than maxint with last digit cut off then you cannot add anything to the result and not overflow it
+            # if it is equal to maxint you can only add up to what the last digit of max int is
+            if (res > MAXINT // 10) or (res == MAXINT // 10 and digit > MAXINT % 10):
+                return MAXINT if sign == 1 else MININT
+            
+            res = 10 * res + digit
             i += 1
 
-        res *= sign
-        print(res)
-
-        if res > MAXINT:
-            res = MAXINT
-        elif res < MININT:
-            res = MININT
-        return res
+  
+        return res * sign
 
     
             
