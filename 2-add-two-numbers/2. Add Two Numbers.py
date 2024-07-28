@@ -4,31 +4,30 @@
 #         self.val = val
 #         self.next = next
 class Solution:
-    def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
+    def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
 
-        n1 = ""
-        n2 = ""
-        
-        while l1:
-            n1 += str(l1.val)
-            l1 = l1.next
-        
-        while l2:
-            n2 += str(l2.val)
-            l2 = l2.next
-        
-        total = int(n1[::-1]) + int(n2[::-1])
+        dummy = head = ListNode()
 
-        total = str(total)[::-1]
+        carry = 0
 
-        res = dummy = ListNode()
+        while l1 or l2 or carry:
+            curr = carry
 
-        for n in total:
-            new = ListNode(n)
-            dummy.next = new
+            if l1:
+                curr += l1.val
+                l1 = l1.next
+            if l2:
+                curr += l2.val
+                l2 = l2.next
 
+            carry = curr // 10
+            curr %= 10
+            
+            dummy.next = ListNode(curr)
             dummy = dummy.next
+        
+        return head.next
+            
 
-        return res.next
-             
+
         
