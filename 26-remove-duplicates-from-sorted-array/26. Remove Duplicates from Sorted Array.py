@@ -6,17 +6,13 @@ class Solution:
         #nums at least 1 item to large num
         #range of each item is -100 to 100
 
-        unique = 0 #index of last unique num
+        unique = 1 #index to place next unique num
         for i in range(1, len(nums)):
-            if nums[unique] != nums[i]:
-                unique += 1
-                nums[unique], nums[i] = nums[i], nums[unique]
+            if nums[i-1] != nums[i]:
+                nums[unique] = nums[i]
+                unique += 1               
 
-
-                
-
-
-        return unique + 1
+        return unique
 
 
 
