@@ -1,20 +1,19 @@
 class Solution:
     def isValid(self, s: str) -> bool:
-
-        flipped = {")":"(", "}":"{", "]":"["}
+        pmap = {")":"(", "]":"[","}":"{"}
 
         stack = []
 
         for c in s:
-            if c in flipped:
-                if stack and stack[-1] == flipped[c]:
-                    stack.pop()
-                else:
-                    return False
-            else:
+            if c == "(" or c == "[" or c == "{":
                 stack.append(c)
+            else:
+                if not stack or pmap[c] != stack[-1]:
+                    return False
+                stack.pop()
+        
+        if not stack:
+            return True
+        return False
 
-        if stack:
-            return False
-        return True
         
