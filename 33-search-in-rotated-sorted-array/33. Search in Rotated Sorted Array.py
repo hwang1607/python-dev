@@ -1,23 +1,31 @@
 class Solution:
     def search(self, nums: List[int], target: int) -> int:
         l = 0
-        r = len(nums) -1
+        r = len(nums) - 1
 
-        while l <= r: #if single int
-            mid = l + (r-l)//2 #prevent overflow
+        while l <= r:
+            m = l + (r-l)//2
 
-            if target == nums[mid]:
-                return mid
-            if nums[l] <= nums[mid]: #mid on left section
-                if target < nums[l] or target > nums[mid]:
-                    l = mid+1
+            if nums[m] == target:
+                return m
+
+
+            if nums[m] < nums[l]:
+                print("pivot in first half", m)
+                if target > nums[r] or target < nums[m]:
+                    r = m - 1
                 else:
-                    r = mid-1
-            else: #mid on right section
-                if target < nums[mid] or target > nums[r]:
-                    r = mid-1
+                    l = m + 1
+            else:
+                print("second half", m)
+                if target > nums[m] or target < nums[l]:
+                    l = m + 1
                 else:
-                    l = mid+ 1
+                    r = m - 1
 
+        
         return -1
-                
+
+
+            
+        
