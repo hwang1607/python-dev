@@ -7,7 +7,6 @@ class Solution:
             arr.append([c[0] - c[1], i])
 
         arr.sort()
-        print(arr)
 
         for x in arr:
             if n > 0: #city a
