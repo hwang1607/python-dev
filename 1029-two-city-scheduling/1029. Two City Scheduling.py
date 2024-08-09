@@ -3,6 +3,7 @@ class Solution:
         res = 0
         # arr = []
         n = len(costs) // 2
+
         # for i,c in enumerate(costs):
         #     arr.append([c[0] - c[1], i])
 
