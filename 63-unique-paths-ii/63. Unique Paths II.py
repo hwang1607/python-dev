@@ -10,6 +10,6 @@ class Solution:
                 if obstacleGrid[r][c]:
                     dp[c] = 0
                 elif c+1 < COLS:
-                    dp[c] = dp[c] + dp[c+1]
+                    dp[c] = dp[c] + dp[c+1] #the bottom row no longer matters so just one row is used
         
         return dp[0]
