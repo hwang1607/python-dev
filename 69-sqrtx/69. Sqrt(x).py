@@ -1,9 +1,9 @@
 class Solution:
     def mySqrt(self, x: int) -> int:
 
-        l = 0
+        l = 1
         r = x
-        if x <= 1:
+        if x == 0 :
             return x
 
         while l<=r:
