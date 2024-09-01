@@ -2,8 +2,8 @@ class Solution:
     def generate(self, numRows: int) -> List[List[int]]:
         res = []
 
-        for currow in range(1, numRows + 1):
-            newrow = [0 for r in range(currow)]
+        for currow in range(numRows):
+            newrow = [0 for r in range(currow + 1)]
             newrow[0] = 1
             newrow[-1] = 1
 
