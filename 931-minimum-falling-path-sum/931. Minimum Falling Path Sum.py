@@ -9,6 +9,5 @@ class Solution:
                 right = matrix[r-1][c+1] if c + 1 < len(matrix) else float("inf")
                 matrix[r][c] += min(left, mid, right)
 
-        print(matrix)
         return min(matrix[-1])
         
