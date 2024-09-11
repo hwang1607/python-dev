@@ -1,11 +1,14 @@
 class Solution:
     def minFallingPathSum(self, matrix: List[List[int]]) -> int:
-        dp = [0] * (len(matrix)) #row below
+        length = len(matrix)
 
-        for r in matrix[::-1]:
-            temparr = [0] * (len(matrix)) 
-            for i, n in enumerate(r):
-                temparr[i] = n + min(dp[i-1] if i > 0 else float("inf"), dp[i], dp[i+1] if i+1 < len(matrix) else float("inf"))
-            dp = temparr
+        for r in range(1, len(matrix)):
+            for c in range(len(matrix)):
+                left = matrix[r-1][c-1] if c > 0 else float("inf")
+                mid = matrix[r-1][c]
+                right = matrix[r-1][c+1] if c + 1 < len(matrix) else float("inf")
+                matrix[r][c] += min(left, mid, right)
 
-        return min(dp)
+        print(matrix)
+        return min(matrix[-1])
+        
