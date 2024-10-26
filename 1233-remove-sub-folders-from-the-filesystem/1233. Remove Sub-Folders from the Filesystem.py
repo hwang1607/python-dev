@@ -6,7 +6,7 @@ class Solution:
 
         for i in range(1, len(folder)):
             last = res[-1] + "/"
-            if folder[i][:len(last)] != last:
+            if not folder[i].startswith(last):
                 res.append(folder[i])
 
 
