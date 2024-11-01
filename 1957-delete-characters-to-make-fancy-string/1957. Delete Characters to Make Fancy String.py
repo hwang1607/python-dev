@@ -4,6 +4,7 @@ class Solution:
             return s
         prev1 = s[0]
         prev2 = s[1]
+        
 
         res = s[0] + s[1]
 
