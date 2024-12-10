@@ -8,22 +8,32 @@ class Solution:
         i = 0
         while i < len(words):
             word = words[i]
-            if counter + len(word) + numwords > maxWidth:
-                chars = sum(len(w) for w in curr)
+            if counter + len(word) + numwords > maxWidth:  # Fixed condition to include spaces
+                chars = 0
                 spacearr = []
+                for word in curr:
+                    chars += len(word)
+                
                 if numwords > 1:
-                    q, r = divmod(maxWidth - chars, numwords - 1)
-                    spacearr = [" " * q for _ in range(numwords - 1)]
-                    for j in range(r):
+                    q, r = divmod((maxWidth - chars), numwords - 1)
+                    spacearr = [q * " "] * (numwords - 1)
+                    
+                    j = 0
+                    while r > 0:
                         spacearr[j] += " "
+                        r -= 1
+                        j += 1
+
                     currSpaced = []
-                    for idx in range(len(curr)):
+                    for idx in range(len(curr)):  # Fixed merging of words and spaces
                         currSpaced.append(curr[idx])
                         if idx < len(spacearr):
                             currSpaced.append(spacearr[idx])
-                    res.append("".join(currSpaced))
                 else:
-                    res.append(curr[0].ljust(maxWidth))
+                    numspaces = maxWidth - len(curr[0])
+                    currSpaced = [curr[0] + " " * numspaces]
+
+                res.append(currSpaced)
                 curr = []
                 counter = 0
                 numwords = 0
@@ -34,10 +44,8 @@ class Solution:
                 numwords += 1
             i += 1
 
-        # Handle the last line
-        last_line = " ".join(curr).ljust(maxWidth)
+        # Handle the last line (Left-align the last line)
+        last_line = " ".join(curr).ljust(maxWidth)  # Fixed to left-align and pad spaces
         res.append(last_line)
 
-        return res
-
-        
+        return ["".join(x) for x in res]
