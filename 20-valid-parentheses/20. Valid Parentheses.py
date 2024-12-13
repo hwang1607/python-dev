@@ -1,20 +1,20 @@
 class Solution:
-    def isValid(self, s: str) -> bool:
+    def isValid(self, x: str) -> bool:
 
-        flipped = {")":"(", "}":"{", "]":"["}
+        s = []
+        closetoopen = {')':'(','}':'{',']':'['}
+        
 
-        stack = []
-
-        for c in s:
-            if c in flipped:
-                if stack and stack[-1] == flipped[c]:
-                    stack.pop()
+        for c in x:
+            if c in closetoopen: 
+                if s and s[-1] == closetoopen[c]:
+                    s.pop()
                 else:
                     return False
-            else:
-                stack.append(c)
-
-        if stack:
-            return False
-        return True
+            else:#if opening
+                s.append(c)
+        
+        if not s:
+            return True
+        return False
         
