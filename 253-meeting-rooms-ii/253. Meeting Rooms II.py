@@ -1,6 +1,6 @@
 class Solution:
     def minMeetingRooms(self, intervals: List[List[int]]) -> int:
-        intervals.sort(key=lambda x: x[0])
+        intervals.sort()
         min_heap = []
 
         for interval in intervals:
