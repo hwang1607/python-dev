@@ -1,13 +1,20 @@
 class Solution:
     def minMeetingRooms(self, intervals: List[List[int]]) -> int:
-        intervals.sort() 
-        endtimes = []
+        starts = sorted(i[0] for i in intervals)
+        ends = sorted(i[1] for i in intervals)
 
-        heapq.heappush(endtimes, intervals[0][1])
+        startpointer = 0
+        endpointer = 0
 
-        for i in range(1, len(intervals)):
-            if endtimes[0] <= intervals[i][0]: #meetings overlap
-                heapq.heappop(endtimes)
-            heapq.heappush(endtimes, intervals[i][1])
+        roomsneeded = 0
+
+        while startpointer< len(intervals):
+            if starts[startpointer] >= ends[endpointer]: #they dont overlap
+                roomsneeded -=1
+                endpointer +=1
+            roomsneeded += 1
+            startpointer +=1
         
-        return len(endtimes)
+        return roomsneeded
+
+        
