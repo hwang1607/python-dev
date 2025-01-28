@@ -3,23 +3,21 @@ class Solution:
         """
         Do not return anything, modify nums in-place instead.
         """
-        zero,one,two = 0,0,0
-        for n in nums:
-            if n == 0:
-                zero +=1 
-            elif n == 1:
-                one += 1
-            # else:
-            #     two += 1
-        
-        for i in range(0,zero):
-            nums[i] = 0
-        for i in range(zero, zero+one):
-            nums[i] = 1
+        l, r = 0, len(nums) -1
 
-        for i in range(zero+one,len(nums)):
-            nums[i] = 2
+        i = 0
 
+        while i <= r:
+            if nums[i] == 0:
+                nums[l], nums[i] = nums[i], nums[l]
+                l += 1
             
+            elif nums[i] == 2:
+                nums[i], nums[r] = nums[r], nums[i]
+                r -= 1
+                i-= 1
+            
+            i += 1
+
 
         
