@@ -9,18 +9,19 @@ class Solution:
         diameter = 0
 
 
-        def maxdepth(node):
+        def dfs(node):
+
             if not node:
                 return 0
             nonlocal diameter
-
-            left = maxdepth(node.left)
-            right = maxdepth(node.right)
+            
+            left = dfs(node.left)
+            right = dfs(node.right)
 
             diameter = max(diameter, left+right)
 
-            return(1 + max(left, right))
-
-        maxdepth(root)
-
+            return (1+ max(left, right))
+        
+        dfs(root)
         return diameter
+        
