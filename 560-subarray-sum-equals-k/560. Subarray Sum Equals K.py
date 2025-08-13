@@ -1,16 +1,17 @@
 class Solution:
     def subarraySum(self, nums: List[int], k: int) -> int:
-        res = 0
+        count = 0
+        cumulativeSum =0
 
-        cursum = 0
-        presum = {0:1}
+        sumFreq = defaultdict(int)
+        sumFreq[0] = 1
 
-        for n in nums:
-            cursum += n
-            if cursum - k in presum:
-                res += presum[cursum-k]
-            
-            presum[cursum] = presum.get(cursum,0) + 1
-        
-        return res
+        for num in nums:
+            cumulativeSum += num
+            if (cumulativeSum -k) in sumFreq:
+                count += sumFreq[cumulativeSum - k]
+
+            sumFreq[cumulativeSum] += 1
+        return count
+
         
