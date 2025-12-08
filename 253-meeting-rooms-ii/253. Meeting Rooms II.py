@@ -1,20 +1,21 @@
 class Solution:
     def minMeetingRooms(self, intervals: List[List[int]]) -> int:
-        starts = sorted(i[0] for i in intervals)
-        ends = sorted(i[1] for i in intervals)
+        arr = []
+        maxneeded = 0
+        curr = 0
 
-        startpointer = 0
-        endpointer = 0
-
-        roomsneeded = 0
-
-        while startpointer< len(intervals):
-            if starts[startpointer] >= ends[endpointer]: #they dont overlap
-                roomsneeded -=1
-                endpointer +=1
-            roomsneeded += 1
-            startpointer +=1
+        for start, end in intervals:
+            arr.append([start, 1])
+            arr.append([end, -1])
         
-        return roomsneeded
+        arr.sort()
 
+        for t,x in arr:
+            curr += x
+            maxneeded = max(maxneeded, curr)
+        
+        return maxneeded
+
+
+            
         
