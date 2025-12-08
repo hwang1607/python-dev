@@ -14,7 +14,7 @@ class Solution:
                 newrow = r + dr
                 newcol = c + dc
 
-                if newrow in range(ROWS) and newcol in range(COLS) and grid[newrow][newcol] == "1":
+                if 0 <= newrow < ROWS and 0 <= newcol < COLS and grid[newrow][newcol] == "1":
                     dfs(newrow, newcol)
 
 
