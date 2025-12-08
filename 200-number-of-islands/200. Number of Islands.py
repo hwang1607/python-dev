@@ -3,31 +3,41 @@ class Solution:
         rows = len(grid)
         cols = len(grid[0])
 
-        res = 0
-        visited = set()
+        if not grid: #empty
+            return 0
+        
+        visit = set()
+        islands = 0
 
-        def bfs(row, col):
-            queue = deque([(row, col)])
+        def bfs(r,c):
+            q = deque()
+            q.append((r,c))
 
-            visited.add((row,col))
+            while q:
+                row, col = q.popleft()
 
-            while queue:
-                currow, curcol = queue.popleft()
-                directions = [(-1,0), (1,0), (0,1), (0,-1)]
+                directions = [(1,0), (-1,0), (0,1), (0,-1)]
 
                 for dr, dc in directions:
-                    newrow, newcol = currow + dr, curcol + dc
+                    r,c = row + dr, col + dc
 
-                    if (newrow in range(rows) and newcol in range(cols) and grid[newrow][newcol] == "1" and (newrow, newcol) not in visited):
-                        queue.append((newrow, newcol))
-                        visited.add((newrow, newcol))
+                    if (r in range(rows) and c in range(cols) and grid[r][c] == "1" and
+                        (r,c) not in visit):
+                        q.append((r,c))
+                        visit.add((r,c))
+        
+        for r in range(rows):
+            for c in range(cols):
+                if grid[r][c] == "1" and (r,c) not in visit:
+                    bfs(r,c)
+                    islands += 1
+        
+        return islands
 
-        for row in range(rows):
-            for col in range(cols):
-                if grid[row][col] == "1" and (row, col) not in visited:
-                    bfs(row, col)
-                    res += 1
-        
-        return res
-        
-        
+
+
+
+
+
+
+
