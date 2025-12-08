@@ -4,12 +4,12 @@ class Solution:
 
         res = []
 
-        for interval in intervals:
-            if not res or res[-1][1] < interval[0]:
-                #dont overlap
-                res.append(interval)
+        for i in range(len(intervals)):
+            if not res or res[-1][1] < intervals[i][0]:
+                res.append(intervals[i])
             else:
-                res[-1][1] = max(res[-1][1], interval[1])
-        
+                l = res[-1][0]
+                r = max(intervals[i][1], res[-1][1])
+                res[-1] = [l,r]
         return res
         
