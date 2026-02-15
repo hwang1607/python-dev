@@ -1,11 +1,17 @@
 class HitCounter:
 
     def __init__(self):
-        self.counts = {} #timestamp, hits
+        self.counts = deque() #timestamp, hits
         
 
     def hit(self, timestamp: int) -> None:
-        self.counts[timestamp] = self.counts.get(timestamp, 0) + 1
+        self.counts.append(timestamp)
+
+        start = timestamp - 300
+        if start < 0:
+            start = 0
+        while self.counts[0] <= start:
+            self.counts.popleft()
 
         
 
@@ -14,13 +20,11 @@ class HitCounter:
         start = timestamp - 300
         if start < 0:
             start = 0
+        
+        while self.counts and self.counts[0] <= start:
+            self.counts.popleft()
 
-        for i in range(start + 1, timestamp + 1):
-            if i in self.counts:
-                res += self.counts[i]
-        # for key in self.counts:
-        #     if start < key <= timestamp:
-        #         res += self.counts[key]
+        res = len(self.counts)
         
         return res
 
