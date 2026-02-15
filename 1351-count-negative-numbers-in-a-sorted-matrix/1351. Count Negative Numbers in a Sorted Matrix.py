@@ -9,7 +9,8 @@ class Solution:
             for c in range(COLS):
                 print(r,c)
                 if grid[r][c] < 0:
-                    count += 1
+                    count += COLS - c
+                    break
 
         return count
         
