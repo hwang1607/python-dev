@@ -8,7 +8,6 @@ class Solution:
 
         for r in range(ROWS-1, -1, -1):
             while c < COLS:
-                print(r,c)
                 if grid[r][c] < 0:
                     count += COLS - c
                     break
