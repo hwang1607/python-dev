@@ -14,9 +14,13 @@ class HitCounter:
         start = timestamp - 300
         if start < 0:
             start = 0
-        for key in self.counts:
-            if start < key <= timestamp:
-                res += self.counts[key]
+
+        for i in range(start + 1, timestamp + 1):
+            if i in self.counts:
+                res += self.counts[i]
+        # for key in self.counts:
+        #     if start < key <= timestamp:
+        #         res += self.counts[key]
         
         return res
 
