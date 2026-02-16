@@ -1,17 +1,19 @@
 class Logger:
 
     def __init__(self):
-        self.seen = {} #msg : timestamp
+        self.seen = {} #msg, time
         
 
     def shouldPrintMessage(self, timestamp: int, message: str) -> bool:
         if message in self.seen:
-            if timestamp - self.seen[message] >= 10:
-                self.seen[message] = timestamp
-                return True
-            return False
-        
-        self.seen[message] = timestamp
+            prev_time = timestamp - 10
+            if self.seen[message] > prev_time:
+                return False
+            self.seen[message] = timestamp
+        else:
+            self.seen[message] = timestamp
+
+
         return True
         
 
