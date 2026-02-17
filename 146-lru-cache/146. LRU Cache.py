@@ -1,59 +1,90 @@
 class Node:
     def __init__(self, key, val):
-        self.prev = None
-        self.next = None
+        self.left = None
+        self.right = None
         self.key = key
         self.val = val
+
 
 class LRUCache:
 
     def __init__(self, capacity: int):
-        self.cache = {} #key to node :/
-        self.cap = capacity
-
-        self.left = Node(0,0)
-        self.right = Node(0,0)
-        self.left.next = self.right
-        self.right.prev = self. left
-
-    def remove(self, node):
-        node.prev.next = node.next
-        node.next.prev = node.prev
-
-    #insert right
-    def insert(self,node):
-        prev = self.right.prev
-        r = self.right
-        r.prev = prev.next = node # pointing at node
-        node.next, node.prev = self.right, prev #pointing from node
-
-
-        # prev, nxt = self.right.prev, self.right
-        # prev.next = nxt.prev = node
-        # node.next, node.prev = nxt, prev
-
+        self.capacity = capacity
+        self.dic = {} #key to NODE
+        self.head = Node(0,0) #dummy
+        self.tail = Node(0,0)
+        self.head.next = self.tail
+        self.tail.prev = self.head
         
 
     def get(self, key: int) -> int:
-        if key in self.cache:
-            self.remove(self.cache[key])
-            self.insert(self.cache[key])
-            return self.cache[key].val
-        return -1
+        if key not in self.dic:
+            return -1
+        
+        usednode = self.dic[key]
 
+        #remove it
+        left = usednode.prev
+        right = usednode.next
+        left.next = right
+        right.prev = left
+
+        #put it at front
+        self.head.next.prev = usednode
+        usednode.next = self.head.next
+        self.head.next = usednode
+        usednode.prev = self.head
+
+        
+        
+        
+        
+        
+        
+        
+        return self.dic[key].val
+
+        
+
+    
     def put(self, key: int, value: int) -> None:
+        if key in self.dic:
+            curr = self.dic[key]
+            curr.val = value
+            newnode = curr
 
-        if key in self.cache:
-            self.remove(self.cache[key])
+
+            left = newnode.prev
+            right = newnode.next
+            left.next = right
+            right.prev = left
+
+        else:
+            newnode = Node(key,value)
+
+        self.dic[key] = newnode
+
+        self.head.next.prev = newnode
+        newnode.next = self.head.next
+        self.head.next = newnode
+        newnode.prev = self.head
+
+
+        if len(self.dic) > self.capacity:
+            #evict
+            key = self.tail.prev.key
+
+
+
+            self.dic.pop(key)
+            new_last = self.tail.prev.prev
+            new_last.next = self.tail
+            self.tail.prev = new_last
             
-        self.cache[key] = Node(key, value)
-        self.insert(self.cache[key])
 
-        if len(self.cache) > self.cap:
-            print(self.left.next.key)
-            del self.cache[self.left.next.key]
-            self.remove(self.left.next)
 
+
+        
         
 
 
