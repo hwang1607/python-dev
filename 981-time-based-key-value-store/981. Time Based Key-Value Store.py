@@ -11,11 +11,10 @@ class TimeMap:
             self.store[key].append([value,timestamp])
 
     def get(self, key: str, timestamp: int) -> str:
-        if key not in self.store:
-            return ""
+
         
         res = ""
-        values = self.store.get(key)
+        values = self.store.get(key, [])
 
         l = 0
         r = len(values) - 1
