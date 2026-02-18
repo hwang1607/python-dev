@@ -11,8 +11,11 @@ class RandomizedSet:
         if val in self.hmap:
             return False
         
+
         self.arr.append(val)
         self.hmap[val] = len(self.arr) - 1
+
+
 
         return True
         
@@ -23,17 +26,25 @@ class RandomizedSet:
             return False
         
         # print(self.arr, "asdf")
+        # print(val)
         idx = self.hmap[val]
+        # print(idx)
 
         #swap indexes on map
         self.hmap[self.arr[idx]],  self.hmap[self.arr[-1]] =  self.hmap[self.arr[-1]],  self.hmap[self.arr[idx]]
+    
         self.hmap.pop(val)
 
-        #swap in array
+
+
         self.arr[idx], self.arr[-1] = self.arr[-1], self.arr[idx]
         self.arr.pop() #value is removed
 
+        # print(self.arr, "asdf")
+
         return True
+
+
 
 
     def getRandom(self) -> int:
