@@ -1,43 +1,42 @@
 class RandomizedSet:
-    #array can do get random
-    #hashmap for complexity
 
     def __init__(self):
+        self.hmap = {} #value to index
         self.arr = []
-        self.hmap = {}
         
 
     def insert(self, val: int) -> bool:
+
         if val in self.hmap:
             return False
         
         self.arr.append(val)
         self.hmap[val] = len(self.arr) - 1
-
         return True
         
 
     def remove(self, val: int) -> bool:
-        #removing the last element of an array is o(1)
         if val not in self.hmap:
             return False
+
+        i = self.hmap[val]
+        lastval = self.arr[-1]
+
+        #overwrite the index of where the last vaue was with the index of the value to be deleted
+        #this is because i dont care about the index of the to be deleted value is 
+        #and the position of the last val is now the postion of the value to be deleted
+        self.hmap[lastval] = i
+        del self.hmap[val]
         
-        # print(self.arr, "asdf")
-        idx = self.hmap[val]
-
-        #swap indexes on map
-        self.hmap[self.arr[idx]],  self.hmap[self.arr[-1]] =  self.hmap[self.arr[-1]],  self.hmap[self.arr[idx]]
-        self.hmap.pop(val)
-
-        #swap in array
-        self.arr[idx], self.arr[-1] = self.arr[-1], self.arr[idx]
-        self.arr.pop() #value is removed
+        #put the last VALUE over on top of the to be deleted value
+        self.arr[i] = lastval
+        self.arr.pop()
 
         return True
 
+        
 
     def getRandom(self) -> int:
-        # print(self.arr)
         return self.arr[randint(0, len(self.arr) - 1)]
         
 
